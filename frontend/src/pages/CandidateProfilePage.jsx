@@ -1,8 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { useEffect } from "react";
-import API from "../api";
+import API from "../api/axios";
+
 import {
   Container,
   Typography,
@@ -15,8 +14,8 @@ import {
   Avatar,
   Divider,
 } from "@mui/material";
-import { BASE_URL } from "../config";
 
+import { BASE_URL } from "../config";
 function CandidateProfilePage() {
   const { id } = useParams();
   const [data, setData] = useState(null);
