@@ -16,6 +16,8 @@ import {
   Snackbar,
   Alert,
 } from "@mui/material";
+import API from "../api/axios";
+import { BASE_URL } from "../config";
 
 function ProfilePage() {
   const role = localStorage.getItem("role");
@@ -35,17 +37,32 @@ function ProfilePage() {
     type: "success",
   });
 
+  // useEffect(() => {
+  //   const token = localStorage.getItem("access");
+
+  //   axios
+  //     .get("http://127.0.0.1:8000/api/users/me/", {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     })
+  //     .then((res) => {
+  //       setData(res.data);
+  //       setPhone(res.data.phone || "");
+  //       setEmail(res.data.email || "");
+  //     });
+  // }, []);
   useEffect(() => {
     const token = localStorage.getItem("access");
 
-    axios
-      .get("http://127.0.0.1:8000/api/users/me/", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+    API.get("/users/me/", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then((res) => {
         setData(res.data);
         setPhone(res.data.phone || "");
         setEmail(res.data.email || "");
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }, []);
 
@@ -63,7 +80,10 @@ function ProfilePage() {
         form.append("resume", resume);
       }
 
-      await axios.put("http://127.0.0.1:8000/api/users/update/", form, {
+      // await axios.put("http://127.0.0.1:8000/api/users/update/", form, {
+      //   headers: { Authorization: `Bearer ${token}` },
+      // });
+      await API.put("/users/update/", form, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -155,11 +175,20 @@ function ProfilePage() {
               <Box width="100%">
                 {/* VIEW MODE */}
                 {!editMode && data.resume && (
+                  // <Button
+                  //   variant="contained"
+                  //   fullWidth
+                  //   sx={{ height: 42, fontWeight: 600 }}
+                  //   href={`http://127.0.0.1:8000${data.resume}`}
+                  //   target="_blank"
+                  // >
+                  //   View Resume
+                  // </Button>
                   <Button
                     variant="contained"
                     fullWidth
                     sx={{ height: 42, fontWeight: 600 }}
-                    href={`http://127.0.0.1:8000${data.resume}`}
+                    href={`${BASE_URL}${data.resume}`}
                     target="_blank"
                   >
                     View Resume

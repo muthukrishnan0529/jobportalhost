@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import { useEffect } from "react";
+import API from "../api";
 import {
   Container,
   Typography,
@@ -14,20 +15,35 @@ import {
   Avatar,
   Divider,
 } from "@mui/material";
+import { BASE_URL } from "../config";
 
 function CandidateProfilePage() {
   const { id } = useParams();
   const [data, setData] = useState(null);
 
+  // useEffect(() => {
+  //   const token = localStorage.getItem("access");
+
+  //   axios
+  //     .get(`http://127.0.0.1:8000/api/users/${id}/`, {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     })
+  //     .then((res) => {
+  //       setData(res.data);
+  //     });
+  // }, [id]);
+
   useEffect(() => {
     const token = localStorage.getItem("access");
 
-    axios
-      .get(`http://127.0.0.1:8000/api/users/${id}/`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+    API.get(`/users/${id}/`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then((res) => {
         setData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }, [id]);
 
@@ -122,11 +138,26 @@ function CandidateProfilePage() {
 
             {/* Resume */}
             {data.resume && (
+              // <Button
+              //   variant="contained"
+              //   fullWidth
+              //   size="large"
+              //   href={`http://127.0.0.1:8000${data.resume}`}
+              //   target="_blank"
+              //   sx={{
+              //     height: { xs: 42, md: 52 },
+              //     fontWeight: 700,
+              //     borderRadius: 3,
+              //     mt: 1,
+              //   }}
+              // >
+              //   View Resume
+              // </Button>
               <Button
                 variant="contained"
                 fullWidth
                 size="large"
-                href={`http://127.0.0.1:8000${data.resume}`}
+                href={`${BASE_URL}${data.resume}`}
                 target="_blank"
                 sx={{
                   height: { xs: 42, md: 52 },

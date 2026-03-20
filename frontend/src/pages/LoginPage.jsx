@@ -150,6 +150,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import { Snackbar, Alert, CircularProgress } from "@mui/material";
+import API from "../api/axios";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -176,10 +177,17 @@ function LoginPage() {
       return;
     }
 
+    // try {
+    //   setLoading(true);
+
+    //   const res = await axios.post("http://127.0.0.1:8000/api/users/login/", {
+    //     username,
+    //     password,
+    //   });
     try {
       setLoading(true);
 
-      const res = await axios.post("http://127.0.0.1:8000/api/users/login/", {
+      const res = await API.post("/users/login/", {
         username,
         password,
       });

@@ -147,6 +147,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import { Snackbar, Alert, CircularProgress } from "@mui/material";
+import API from "../api/axios";
 
 function RegisterPage() {
   const navigate = useNavigate();
@@ -174,10 +175,18 @@ function RegisterPage() {
       return;
     }
 
+    // try {
+    //   setLoading(true);
+
+    //   await axios.post("http://127.0.0.1:8000/api/users/register/", {
+    //     username,
+    //     password,
+    //     role,
+    //   });
     try {
       setLoading(true);
 
-      await axios.post("http://127.0.0.1:8000/api/users/register/", {
+      await API.post("/users/register/", {
         username,
         password,
         role,

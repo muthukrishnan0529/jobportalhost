@@ -172,6 +172,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import { Snackbar, Alert, CircularProgress } from "@mui/material";
+import API from "../api/axios";
 
 function SetupProfilePage() {
   const navigate = useNavigate();
@@ -213,7 +214,12 @@ function SetupProfilePage() {
         form.append("resume", resume);
       }
 
-      await axios.put("http://127.0.0.1:8000/api/users/update/", form, {
+      // await axios.put("http://127.0.0.1:8000/api/users/update/", form, {
+      //   headers: {
+      //     Authorization: `Bearer ${token}`,
+      //   },
+      // });
+      await API.put("/users/update/", form, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
