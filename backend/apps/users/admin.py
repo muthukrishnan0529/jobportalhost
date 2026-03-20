@@ -12,6 +12,8 @@ class UserAdmin(admin.ModelAdmin):
         "is_profile_completed",
     )
 
+    search_fields = ("username", "email")
+
     fieldsets = (
         (None, {
             "fields": ("username", "password")
