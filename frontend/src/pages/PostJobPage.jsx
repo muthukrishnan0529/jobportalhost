@@ -147,7 +147,6 @@
 
 // export default PostJobPage;
 
-
 import { useState } from "react";
 import { postJob } from "../api/jobApi";
 
@@ -194,7 +193,7 @@ function PostJobPage() {
           salary,
           description,
         },
-        token
+        token,
       );
 
       setSnack(true);
@@ -264,6 +263,7 @@ function PostJobPage() {
           />
 
           <TextField
+            sx={{ whiteSpace: "pre-line", lineHeight: 1.7 }}
             label="Job Description"
             fullWidth
             multiline
