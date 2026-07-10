@@ -95,9 +95,7 @@ import os
 
 DATABASES = {
     "default": dj_database_url.config(
-        default=os.environ.get(
-            "postgresql://jobportal_db_qz2e_user:BIDKO3MPL5LVYnZ1vwH2KIq7oQELHaEv@dpg-d98bc0t7vvec739ahlu0-a.oregon-postgres.render.com/jobportal_db_qz2e"
-        )
+        default=os.environ.get("DATABASE_URL")
     )
 }
 
@@ -179,3 +177,4 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # username : priyaa
 # password : Priya@123
+
