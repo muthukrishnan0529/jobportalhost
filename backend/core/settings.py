@@ -96,7 +96,7 @@ import os
 DATABASES = {
     "default": dj_database_url.config(
         default=os.environ.get(
-            "postgresql://sudo_delete_database_jobportal_db_user:GMGv3p09ErXgIRn7axD0ynmlDADTDeXN@dpg-d6uiemea2pns73a3dn10-a.oregon-postgres.render.com/sudo_delete_database_jobportal_db"
+            "postgresql://jobportal_db_qz2e_user:BIDKO3MPL5LVYnZ1vwH2KIq7oQELHaEv@dpg-d98bc0t7vvec739ahlu0-a.oregon-postgres.render.com/jobportal_db_qz2e"
         )
     )
 }
@@ -162,3 +162,20 @@ SIMPLE_JWT = {
 CORS_ALLOW_ALL_ORIGINS = True
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+
+# This project detail
+
+# username : admin
+# password : admin123
+
+# HR ID
+# username : aishwarya
+# password : Aishwarya@123
+
+# Candidate ID
+# username : muthu
+# password : Muthu@123
+
+# username : priyaa
+# password : Priya@123
